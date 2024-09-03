@@ -7,6 +7,10 @@ def  CercastringaInNomefile(sFile,sStringa):
         return True
     else:
         return False
+    
+def CercaStringaInContenutoFile(sPathFile,sStringa):
+    return False 
+
 sRoot=input("Inserisci  directory in cui cercare:")
 sParola=input("inserisci parola da cercare:")
 sOutdir=input("inserisci directory di output:")

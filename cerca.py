@@ -18,8 +18,17 @@ def CercaStringaInTextfile(sFile,sStringa):
             if(iRet>=0):
              sRiga=file1.readline()
     return False
-def CercaStringaInPDFfile(sFile,sSstringa):
-    return False
+
+def CercaInFilePdf(sFile,sString):
+	object = PyPDF2.PdfReader(sFile)
+	numPages = len(object.pages)
+	for i in range(0, numPages):
+		pageObj = object.pages[i]
+		text = pageObj.extract_text()
+		text = text.lower()
+		if(text.find(sString)!=-1):
+			return True
+	return False
 
     
 def CercaStringaInContenutoFile(sPathFile,sStringa):
@@ -28,7 +37,7 @@ def CercaStringaInContenutoFile(sPathFile,sStringa):
         bRet=CercaStringaInTextfile(sPathFile,sStringa)
 
     if sOutFileExt.lower()==".pdf":
-        bRet=CercaStringaInPDFfile(sPathFile,sStringa)
+        bRet=CercaInFilePdf(sPathFile,sStringa)
     return bRet
 
 

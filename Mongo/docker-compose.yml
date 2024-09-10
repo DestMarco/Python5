@@ -5,7 +5,7 @@ services:
       image: mongo
       restart: always
       volumes:
-        - localdatabase:/data/db
+        - localdatabase:/data/db  
       networks:
         - composenetwork
     mongo-express:
@@ -21,7 +21,7 @@ services:
       depends_on:
         - mongo
 volumes:
-  localdatabase
+  localdatabase:
 networks:
   composenetwork:
     driver: bridge 

@@ -5,7 +5,7 @@ api=Flask(__name__)
 
 
 
-@api.route('/reggistrati', methods=['GET'])
+@api.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
@@ -15,7 +15,7 @@ def index2():
     return render_template('index2.html')
 
 
-@api.route('/reko', methods=['GET'])
+@api.route('/reggistrati', methods=['GET'])
 def reg_ko():
     return render_template('reg_ko.html')
 

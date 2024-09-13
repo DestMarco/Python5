@@ -1,9 +1,10 @@
 from flask import Flask, render_template
+from flask import request, render_template
 
 
 api=Flask(__name__)
 
-
+utenti = [["mario","rossi","mario.1424@gmail.com","1234","0"],["alessia","garibaldi","alessia.124@yohoo.it","Password01","0"],["gianni","Gianfranco","gianno.898@gmail.com","2304","0"]]
 
 @api.route('/', methods=['GET'])
 def index():
@@ -15,9 +16,28 @@ def index2():
     return render_template('index2.html')
 
 
-@api.route('/reggistrati', methods=['GET'])
-def reg_ko():
+@api.route('/regko', methods=['GET'])
+def registra():
     return render_template('reg_ko.html')
+
+
+@api.route('/reggistrati', methods=['GET'])
+def registra():
+    nome=request.args.get("nome")
+    print("Nome Inserito:"+ nome)
+
+    cognome=request.args.get("cognome")
+    print("Cognome inserito:"+cognome)
+
+    email=request.args.get("email")
+    print("email inserito:"+email)
+
+    password=request.args.get("password")
+    print("Password inserita:"+password)
+    
+    return render_template('reg_ko.html')
+
+    
 
 
 @api.route('/reok', methods=['GET'])

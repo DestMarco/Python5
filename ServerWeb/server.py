@@ -16,10 +16,6 @@ def index2():
     return render_template('index2.html')
 
 
-@api.route('/regko', methods=['GET'])
-def registra():
-    return render_template('reg_ko.html')
-
 
 @api.route('/reggistrati', methods=['GET'])
 def registra():

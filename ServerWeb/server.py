@@ -19,7 +19,7 @@ def index2():
     return render_template('index2.html')
 
 @api.route('/accedi', methods=['GET'])
-def index2():
+def accesso():
      # Recupera i dati dalla query string
     nome = request.args.get("nome")
     password = request.args.get("password")
@@ -74,10 +74,7 @@ def registra():
             return render_template('reg_ok.html')
         else:
             return render_template('reg_ko.html')
-
-    # Aggiungi il nuovo utente
-    utenti.append(l)
-        
+ 
         # Dopo la registrazione, redireziona alla pagina di accesso
     return redirect(url_for('accedi'))
 

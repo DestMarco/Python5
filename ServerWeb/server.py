@@ -75,8 +75,6 @@ def registra():
         else:
             return render_template('reg_ko.html')
  
-        # Dopo la registrazione, redireziona alla pagina di accesso
-    return redirect(url_for('accedi'))
 
 
 

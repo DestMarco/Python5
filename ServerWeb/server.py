@@ -42,7 +42,7 @@ def accesso():
 def accesso_successo():
     nome = request.args.get('nome')
     cognome = request.args.get('cognome')
-    return render_template('accessoS.html', nome1=nome, cognome1=cognome)
+    return render_template('accessoS.html', nome=nome, cognome=cognome)
 
 @api.route('/accesso_fallito', methods=['GET'])
 def accesso_fallito():

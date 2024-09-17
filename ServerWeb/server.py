@@ -1,10 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask import request, render_template
 
 
 api=Flask(__name__)
 
-utenti = [["mario","rossi","mario.1424@gmail.com","1234"],["alessia","garibaldi","alessia.124@yohoo.it","Password01"],["gianni","Gianfranco","gianno.898@gmail.com","2304"]]
+utenti = [["mario","rossi","mario.1424@gmail.com","1234","0"],["alessia","garibaldi","alessia.124@yohoo.it","Password01","0"],["gianni","Gianfranco","gianno.898@gmail.com","2304","0"]]
+
+
+
 
 @api.route('/', methods=['GET'])
 def index():
@@ -14,6 +17,39 @@ def index():
 @api.route('/pippo', methods=['GET'])
 def index2():
     return render_template('index2.html')
+
+@api.route('/accedi', methods=['GET'])
+def index2():
+     # Recupera i dati dalla query string
+    nome = request.args.get("nome")
+    password = request.args.get("password")
+
+    if nome and password:  # Controlla se email e password sono state fornite
+        # Verifica se l'utente esiste
+        for utente in utenti:
+            if utente[0] == nome and utente[3] == password:
+                utente[-1] = "1"  # L'utente è loggato
+                return redirect(url_for('accesso_successo'))  # Redirezione alla pagina di successo
+
+        return redirect(url_for('accesso_fallito'))  # Redirezione alla pagina di errore
+
+    return render_template('accedi.html')
+
+
+
+
+@api.route('/accesso_successo', methods=['GET'])
+def accesso_successo():
+    nome = request.args.get('nome')
+    cognome = request.args.get('cognome')
+    return render_template('accessoS.html', nome=nome, cognome=cognome)
+
+@api.route('/accesso_fallito', methods=['GET'])
+def accesso_fallito():
+    return render_template('accessoF.html')
+
+
+
 
 
 
@@ -30,19 +66,27 @@ def registra():
 
     password=request.args.get("password")
     print("Password inserita:"+password)
-    l: list[str] =[nome,cognome,email,password]
+    l: list[str] =[nome,cognome,email,password,"0"]
 
     for i in utenti:
         if l==i:
+            i[-1]="1"
             return render_template('reg_ok.html')
-    
-    return render_template('reg_ko.html')
+        else:
+            return render_template('reg_ko.html')
+
+    # Aggiungi il nuovo utente
+    utenti.append(l)
+        
+        # Dopo la registrazione, redireziona alla pagina di accesso
+    return redirect(url_for('accedi'))
+
+
 
 
         
 
     
-
 
 @api.route('/reok', methods=['GET'])
 def reg_ok():

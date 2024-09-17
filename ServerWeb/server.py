@@ -23,13 +23,14 @@ def accesso():
      # Recupera i dati dalla query string
     nome = request.args.get("nome")
     password = request.args.get("password")
+    cognome=request.args.get("cognome")
 
     if nome and password:  # Controlla se email e password sono state fornite
         # Verifica se l'utente esiste
         for utente in utenti:
-            if utente[0] == nome and utente[3] == password:
+            if utente[0] == nome and utente[3] == password and cognome[1]==cognome:
                 utente[-1] = "1"  # L'utente è loggato
-                return redirect(url_for('accesso_successo'))  # Redirezione alla pagina di successo
+                return render_template('accessoS.html', nome=nome, cognome=cognome,) # Redirezione alla pagina di successo
 
         return redirect(url_for('accesso_fallito'))  # Redirezione alla pagina di errore
 
@@ -56,7 +57,7 @@ def accesso_fallito():
 @api.route('/reggistrati', methods=['GET'])
 def registra():
     nome=request.args.get("nome")
-    print("Nome Inserito:"+ nome)
+    print("Nome Inserito:"+nome)
 
     cognome=request.args.get("cognome")
     print("Cognome inserito:"+cognome)

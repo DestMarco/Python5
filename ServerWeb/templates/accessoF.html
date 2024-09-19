@@ -1,4 +1,3 @@
-
 <!-- accesso_fallito.html -->
 <!DOCTYPE html>
 <html lang="it">
@@ -6,12 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accesso Fallito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            margin: 10px 0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
-    <form action="accesso_fallito" method="get"></form>
-    <h1>Accesso Fallito</h1>
-    <p>Il tentativo di accesso non è riuscito. Per favore, verifica le tue credenziali e riprova.</p>
-    <p><a href="/accedi">Torna alla pagina di accesso</a></p>
-    <p><a href="/reggistrati">Registrati se non hai un account</a></p>
+    <div class="container">
+        <h1>Accesso Fallito</h1>
+        <p>Il tentativo di accesso non è riuscito. Per favore, verifica le tue credenziali e riprova.</p>
+        <div class="button-container">
+            <a href="/accedi">Torna alla pagina di accesso</a>
+            <a href="/reggistrati">Registrati se non hai un account</a>
+        </div>
+    </div>
 </body>
 </html>

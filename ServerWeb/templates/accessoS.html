@@ -5,10 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accesso Riuscito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container a:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <form action="accesso_successo" method="get">
-    <h1>Accesso Riuscito!</h1>
-    <p>Benvenuto, {{ nome }} {{ cognome }}!</p>
+    <div class="container">
+        <h1>Accesso Riuscito!</h1>
+        <form action="accesso_successo" method="get">
+        <p>Benvenuto, {{ nome }} {{ cognome }} {{password}}!</p>
+        </div>
+    </div>
 </body>
 </html>

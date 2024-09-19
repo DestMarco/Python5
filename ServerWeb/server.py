@@ -25,12 +25,12 @@ def accesso():
     password = request.args.get("password")
     cognome=request.args.get("cognome")
 
-    if nome and password:  # Controlla se email e password sono state fornite
+    if nome and password and cognome:  # Controlla se email e password sono state fornite
         # Verifica se l'utente esiste
         for utente in utenti:
-            if utente[0] == nome and utente[3] == password and cognome[1]==cognome:
+            if utente[0] == nome and  utente[3]==password and utente[1]==cognome:
                 utente[-1] = "1"  # L'utente è loggato
-                return render_template('accessoS.html', nome=nome, cognome=cognome,) # Redirezione alla pagina di successo
+                return redirect(url_for('accesso_successo', nome=nome, password=password, cognome=cognome)) # Redirezione alla pagina di successo
 
         return redirect(url_for('accesso_fallito'))  # Redirezione alla pagina di errore
 
@@ -57,24 +57,21 @@ def accesso_fallito():
 @api.route('/reggistrati', methods=['GET'])
 def registra():
     nome=request.args.get("nome")
-    print("Nome Inserito:"+nome)
 
     cognome=request.args.get("cognome")
-    print("Cognome inserito:"+cognome)
 
     email=request.args.get("email")
-    print("email inserito:"+email)
+
 
     password=request.args.get("password")
-    print("Password inserita:"+password)
     l: list[str] =[nome,cognome,email,password,"0"]
 
     for i in utenti:
         if l==i:
             i[-1]="1"
             return render_template('reg_ok.html')
-        else:
-            return render_template('reg_ko.html')
+        
+    return render_template('reg_ko.html')
  
        
 

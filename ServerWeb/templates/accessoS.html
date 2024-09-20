@@ -59,6 +59,19 @@
         <h1>Accesso Riuscito!</h1>
         <form action="accesso_successo" method="get">
         <p>Benvenuto, {{ nome }} {{ cognome }} {{password}}!</p>
+
+
+          <!-- Pulsante per gli ordini passati -->
+    <form action="{{ url_for('ordini_passati') }}" method="get">
+        <button type="submit">Ordini Passati</button>
+    </form>
+
+        <!-- Pulsante per gli ordini correnti -->
+    <form action="{{ url_for('ordini_correnti') }}" method="get">
+        <button type="submit">Ordini Correnti</button>
+    </form>
+
+
         </div>
     </div>
 </body>

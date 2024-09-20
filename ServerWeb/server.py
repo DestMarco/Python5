@@ -7,6 +7,9 @@ api=Flask(__name__)
 utenti = [["mario","rossi","mario.1424@gmail.com","1234","0"],["alessia","garibaldi","alessia.124@yohoo.it","Password01","0"],["gianni","Gianfranco","gianno.898@gmail.com","2304","0"]]
 
 
+@api.route('/iniziale', methods=['GET'])
+def pagina_iniziale():
+    return render_template('iniziale.html')
 
 
 @api.route('/', methods=['GET'])
@@ -43,6 +46,20 @@ def accesso_successo():
     nome = request.args.get('nome')
     cognome = request.args.get('cognome')
     return render_template('accessoS.html', nome=nome, cognome=cognome)
+
+
+# Rotta per gli ordini passati
+@api.route('/ordini_passati', methods=['GET'])
+def ordini_passati():
+    return render_template('ordini_passati.html')
+
+# Rotta per gli ordini correnti
+@api.route('/ordini_correnti', methods=['GET'])
+def ordini_correnti():
+    return render_template('ordini_correnti.html')
+
+
+
 
 @api.route('/accesso_fallito', methods=['GET'])
 def accesso_fallito():

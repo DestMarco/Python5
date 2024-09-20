@@ -20,24 +20,23 @@ def index2():
 
 @api.route('/accedi', methods=['GET'])
 def accesso():
-     # Recupera i dati dalla query string
+
     nome = request.args.get("nome")
     password = request.args.get("password")
     cognome=request.args.get("cognome")
 
-    if nome and password and cognome:  # Controlla se email e password sono state fornite
-        # Verifica se l'utente esiste
+    if nome and password and cognome:  
+        
         for utente in utenti:
-            if utente[0] == nome and  utente[3]==password and utente[1]==cognome:
-                utente[-1] = "1"  # L'utente è loggato
-                return redirect(url_for('accesso_successo', nome=nome, password=password, cognome=cognome)) # Redirezione alla pagina di successo
+            if utente[0] == nome and  utente[3]==password and utente[1]==cognome and utente[-1] == "1"  :
+                
+                return redirect(url_for('accesso_successo', nome=nome, password=password, cognome=cognome))
 
-        return redirect(url_for('accesso_fallito'))  # Redirezione alla pagina di errore
-
+        return redirect(url_for('accesso_fallito'))
     return render_template('accedi.html')
 
 
-
+ 
 
 @api.route('/accesso_successo', methods=['GET'])
 def accesso_successo():

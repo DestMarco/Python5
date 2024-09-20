@@ -7,14 +7,14 @@ api=Flask(__name__)
 utenti = [["mario","rossi","mario.1424@gmail.com","1234","0"],["alessia","garibaldi","alessia.124@yohoo.it","Password01","0"],["gianni","Gianfranco","gianno.898@gmail.com","2304","0"]]
 
 
-@api.route('/iniziale', methods=['GET'])
+@api.route('/formregistrazione', methods=['GET'])
 def pagina_iniziale():
-    return render_template('iniziale.html')
+    return render_template('index.html')
 
 
 @api.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('iniziale.html')
 
 
 @api.route('/pippo', methods=['GET'])

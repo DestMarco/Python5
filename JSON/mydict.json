@@ -1,0 +1,10 @@
+{
+    "brand": "Ford",
+    "electric": false,
+    "year": 1964,
+    "colors": [
+        "red",
+        "white",
+        "blue"
+    ]
+}

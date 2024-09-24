@@ -17,7 +17,7 @@ def SerializzaLista(lVar) -> str:
     return lVar
 
 
-def DeserializzaLista(sVar) -> str:
+def DeserializzaLista(sVar) :
     try:
         
         return ast.literal_eval(sVar)
@@ -26,12 +26,13 @@ def DeserializzaLista(sVar) -> str:
         return []
         
 serializza=SerializzaLista(mylist_2)
-print("Serialized", serializza)
+print(type(serializza))
+print ("serializza:", serializza)
 
 
 deserializza=DeserializzaLista(mylist_1)
-print("Deserialized:", deserializza)
-
+print(type(deserializza))
+print("deserializza:", deserializza)
 
 
 

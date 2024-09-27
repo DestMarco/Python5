@@ -1,8 +1,5 @@
 
 import json
-import jsonschema
-import requests
-import sys
 
 
 

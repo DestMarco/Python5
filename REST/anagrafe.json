@@ -1,0 +1,26 @@
+{
+    "dctnst34b56h501u": {
+        "nome": "mario",
+        "cognome": "de martino",
+        "data nascita": "21/05/1980",
+        "codicefiscale": "dctnst34b56h501u"
+    },
+    "dctnst34b56h501a": {
+        "nome": "gianni",
+        "cognome": "de martino",
+        "data nascita": "21/05/1980",
+        "codicefiscale": "dctnst34b56h501u"
+    },
+    "dctnst34b56h503e": {
+        "nome": "maria",
+        "cognome": "de martino",
+        "data nascita": "21/05/1980",
+        "codicefiscale": "dctnst34b56h503e"
+    },
+    "dfghjkl\u00f2": {
+        "nome": "mario ",
+        "cognome": "de martino",
+        "datanascita": "21/05/1980",
+        "codicefiscale": "dfghjkl\u00f2"
+    }
+}

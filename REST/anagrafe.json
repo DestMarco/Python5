@@ -1,26 +1,111 @@
 {
+
     "dctnst34b56h501u": {
+
         "nome": "mario",
+
         "cognome": "de martino",
+
         "data nascita": "21/05/1980",
-        "codicefiscale": "dctnst34b56h501u"
+
+        "codice fiscale": "dctnst34b56h501u"
+
     },
+
     "dctnst34b56h501a": {
+
         "nome": "gianni",
+
         "cognome": "de martino",
+
         "data nascita": "21/05/1980",
-        "codicefiscale": "dctnst34b56h501u"
+
+        "codice fiscale": "dctnst34b56h501u"
+
     },
+
     "dctnst34b56h503e": {
+
         "nome": "maria",
+
         "cognome": "de martino",
+
         "data nascita": "21/05/1980",
-        "codicefiscale": "dctnst34b56h503e"
+
+        "codice fiscale": "dctnst34b56h501u"
+
     },
-    "dfghjkl\u00f2": {
-        "nome": "mario ",
+
+    "dctnst34b56h502w": {
+
+        "nome": "silvia",
+
         "cognome": "de martino",
-        "datanascita": "21/05/1980",
-        "codicefiscale": "dfghjkl\u00f2"
+
+        "data nascita": "21/05/1980",
+
+        "codice fiscale": "dctnst34b56h501u"
+
+    },
+
+    "aaaaa": {
+
+        "nome": "Paolo",
+
+        "cognome": "Rossi",
+
+        "data nascita": "24/02/1990",
+
+        "codice fiscale": "aaaaa"
+
+    },
+
+    "asddsa": {
+
+        "nome": "adsadads",
+
+        "cognome": "asdadsads",
+
+        "data nascita": "10/01/1999",
+
+        "codice fiscale": "asddsa"
+
+    },
+
+    "VLDPTN02H04Z145J": {
+
+        "nome": "Vladimir",
+
+        "cognome": "Putin",
+
+        "data nascita": "14/04/1998",
+
+        "codice fiscale": "VLDPTN02H04Z145J"
+
+    },
+
+    "GVNBNN01L04R132E": {
+
+        "nome": "Gio",
+
+        "cognome": "Ban",
+
+        "data nascita": "21/02/2001",
+
+        "codice fiscale": "GVNBNN01L04R132E"
+
+    },
+
+    "CHTGPT01G01K000J": {
+
+        "nome": "Chat",
+
+        "cognome": "GPT",
+
+        "data nascita": "01/01/2001",
+
+        "codice fiscale": "CHTGPT01G01K000J"
+
     }
+
 }

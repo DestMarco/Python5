@@ -1,84 +1,79 @@
 import requests, json, sys
 
+import requests
+import sys
+
 base_url = "https://127.0.0.1:8080"
 
-sUsername=""
+# Variabili per salvare le credenziali dell'utente
+sUsername = ""
 sPassword = ""
 
+# Funzioni di utilità per gestire input e output
 def GetDatiCittadino():
     nome = input("Inserisci il nome: ")
     cognome = input("Inserisci il cognome: ")
     dataN = input("Inserisci la data di nascita (gg/mm/aaaa): ")
     codF = input("Inserisci il codice fiscale: ")
-    datiCittadino = {
-        "nome": nome, 
-        "cognome": cognome, 
-        "dataNascita": dataN, 
+    return {
+        "nome": nome,
+        "cognome": cognome,
+        "dataNascita": dataN,
         "codFiscale": codF
     }
-    return datiCittadino
-
 
 def GetCodicefiscale():
-    cod = input('Inserisci codice fiscale: ')
+    cod = input("Inserisci codice fiscale: ")
     return {"codFiscale": cod}
-
 
 def EseguiOperazione(iOper, sServizio, dDatiToSend):
     try:
-        if iOper == 1:
-            response = requests.post(sServizio, json=dDatiToSend, verify=False)
-        if iOper == 2:
-            response = requests.get(sServizio, verify=False)
-        if iOper == 3:
-            response = requests.put(sServizio, json=dDatiToSend, verify=False)
-        if iOper == 4:
-            response = requests.delete(sServizio, json=dDatiToSend, verify=False)
-
-        if response.status_code==200:
+        # Esegui la richiesta POST
+        response = requests.post(sServizio, json=dDatiToSend, verify=False)
+        
+        # Gestisci la risposta
+        if response.status_code == 200:
             print(response.json())
         else:
-            print("Attenzione, errore " + str(response.status_code))
-    except:
-        print("Problemi di comunicazione con il server, riprova più tardi.")
+            print("Errore durante l'operazione. Codice di errore:", response.status_code)
+    except Exception as e:
+        print("Errore di comunicazione con il server:", e)
 
+# Funzione per il login iniziale dell'utente
 def EffettuaPrimoLogin():
-    global sUsername, sPassword,sPrivilegio, iPrimoLoginEffettuato 
-
-    #inserisci username
+    global sUsername, sPassword
     sUsername = input("Inserisci username: ")
-
-    #inserisci password
     sPassword = input("Inserisci password: ")
 
-    #componi jsonRequest
-    jsonRequest = {"username": sUsername, "password":sPassword}
+    jsonRequest = {"username": sUsername, "password": sPassword}
 
     try:
-        #manda i dati al server
-        api_url = base_url + "/login"
-        response = requests.post(api_url,json=jsonRequest, verify=False)
-        
-        #processa la risposta del server
-        if response.status_code==200:
+        response = requests.post(f"{base_url}/login", json=jsonRequest, verify=False)
+        if response.status_code == 200:
             jsonResponse = response.json()
-            if jsonResponse["Esito"]=="000":
-                sPrivilegio = jsonResponse["Privilegio"]
-                iPrimoLoginEffettuato = 1
-    except:
-        print("Attenzione, problemi di comunicazione con il server")
-        iPrimoLoginEffettuato = 0
+            if jsonResponse["Esito"] == "000":
+                print("Login avvenuto con successo!")
+                return True
+            else:
+                print("Errore login:", jsonResponse["Msg"])
+                return False
+        else:
+            print("Errore durante il login. Codice di errore:", response.status_code)
+            return False
+    except Exception as e:
+        print("Errore di comunicazione con il server:", e)
+        return False
 
-
+# Inizio applicazione client
 print("Benvenuti al Comune - sede locale")
 
-sPrivilegio = ""
-iPrimoLoginEffettuato = 0 
-while iPrimoLoginEffettuato == 0:
-    EffettuaPrimoLogin()
+# Effettua il login finché non è valido
+login_effettuato = False
+while not login_effettuato:
+    login_effettuato = EffettuaPrimoLogin()
 
-iFlag = 0
-while iFlag==0:
+# Loop principale per le operazioni
+while True:
     print("\nOperazioni disponibili:")
     print("1. Inserisci cittadino")
     print("2. Richiedi cittadino")
@@ -86,47 +81,47 @@ while iFlag==0:
     print("4. Elimina cittadino")
     print("5. Esci")
 
-
     try:
         iOper = int(input("Cosa vuoi fare? "))
     except ValueError:
         print("Inserisci un numero valido!")
         continue
 
+    # Parametri comuni per ogni richiesta
+    api_url = ""
+    jsonDataRequest = {"username": sUsername, "password": sPassword}
 
+    # Aggiungi cittadino
     if iOper == 1:
         print("Aggiunta cittadino")
-        api_url = base_url + "/add_cittadino"
-        jsonDataRequest = GetDatiCittadino()
-        jsonDataRequestNew = {"username":sUsername , "password":sPassword, "datiCittadino":jsonDataRequest } 
-        EseguiOperazione(1, api_url, jsonDataRequestNew)
+        api_url = f"{base_url}/add_cittadino"
+        jsonDataRequest["datiCittadino"] = GetDatiCittadino()
+        EseguiOperazione(iOper, api_url, jsonDataRequest)
 
     # Richiesta dati cittadino
     elif iOper == 2:
         print("Richiesta dati cittadino")
-        api_url = base_url + "/read_cittadino"
-        jsonDataRequest = GetCodicefiscale()
-        EseguiOperazione(2, api_url + "/" + jsonDataRequest['codFiscale'],None)
+        api_url = f"{base_url}/read_cittadino"
+        jsonDataRequest.update(GetCodicefiscale())
+        EseguiOperazione(iOper, api_url, jsonDataRequest)
 
+    # Modifica cittadino
     elif iOper == 3:
         print("Modifica cittadino")
-        api_url = base_url + "/update_cittadino"
-        jsonDataRequest = GetDatiCittadino()
-        EseguiOperazione(3, api_url, jsonDataRequest)
+        api_url = f"{base_url}/update_cittadino"
+        jsonDataRequest.update(GetDatiCittadino())
+        EseguiOperazione(iOper, api_url, jsonDataRequest)
 
-
+    # Eliminazione cittadino
     elif iOper == 4:
         print("Eliminazione cittadino")
-        api_url = base_url + "/elimina_cittadino"
-        jsonDataRequest = GetCodicefiscale()
-        EseguiOperazione(4, api_url, jsonDataRequest)
+        api_url = f"{base_url}/elimina_cittadino"
+        jsonDataRequest.update(GetCodicefiscale())
+        EseguiOperazione(iOper, api_url, jsonDataRequest)
 
+    # Esci
     elif iOper == 5:
         print("Buona giornata!")
-        iFlag = 1
-
+        break
     else:
         print("Operazione non disponibile, riprova.")
-
-
-

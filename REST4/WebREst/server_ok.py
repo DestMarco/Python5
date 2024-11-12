@@ -35,7 +35,7 @@ def GestisciLogin():
         jsonReq = request.json
         sUsernameInseritoDalClient = jsonReq["username"]
         sPasswordInseritaDalClient = jsonReq["password"]
-        sQuery = "select privilegi from utenti where mail='" + sUsernameInseritoDalClient + "' and password='" + sPasswordInseritaDalClient + "';"  
+        sQuery = "select privileggi from utenti where email='" + sUsernameInseritoDalClient + "' and password='" + sPasswordInseritaDalClient + "';"  
         print(sQuery)
         iNumRows = db.read_in_db(cur,sQuery)
         if iNumRows == 1:

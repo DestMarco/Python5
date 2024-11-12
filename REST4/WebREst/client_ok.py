@@ -1,4 +1,7 @@
 import requests, json, sys
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 base_url = "https://127.0.0.1:8080"
 

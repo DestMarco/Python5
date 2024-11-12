@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Form di registrazione</title>
+	<style>
+        body {
+            margin-left: 30%;
+			margin-right: 30%;
+            font-family: Arial;
+            font-size: 22px;
+            text-align: center;
+            background: #a9d6bf; 
+        }
+		p {
+			text-align: left;
+			color: red;
+		} 
+		#btnid {
+			text-align: center;		
+		}
+		
+		input[type = submit], input[type = reset] {
+            background-color: orange; 
+			font-size: 22px;	
+         }		
+	</style>		
+</head>
+<body>
+    <h1>Form di registrazione</h1>
+    <form action="/registrati" method="get">
+        <fieldset>
+            <legend >Dati utente</legend>		
+            <input type="hidden" name="controllo" value="2"><br>
+            <p>
+			<label for="fname">Nome utente:</label><br>
+			<input id="fname" type="text" name="nome" value="il tuo nome" size="50" maxlength="20"></p>
+            <p><label for="fcognome">Password:</label><br> 
+			<input id="fcognome" type="password" name="cognome" value="il tuo cognome" size="50" maxlength="20">
+			</p>
+            <p>Sesso: 
+            <input name="sesso" type="radio" value="1">M
+            <input name="sesso" type="radio" value="2">F</p>
+            <!--dfsdfsdfsdsffsd-->
+			
+			<p id="btnid">
+			<input type="reset" value="cancella">
+			<input type="submit" value="invia dati">
+			</p>
+        </fieldset>
+    </form>
+</body>
+</html>

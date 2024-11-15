@@ -42,15 +42,21 @@ def regOk():
 def regKo():
     return render_template('reg_ko.html')
 
-@api.route('/registrati', methods=['GET'])
+@api.route('/registrati', methods=['GET','POST'])
 def registra():
+    if request.method=='POST':
+        nome=request.form['nome']+"DA POST"
+    else:
+        nome=request.form('nome')+"DA -GET"
+
     #prendi i dati che ti ha inviato il server
 
     #verifica la correttezza 
 
 
     nome = request.args.get("nome")
-    #print("Nome inserito:" + nome)
+    sResponsePage="<html><body><h1>Buongiorno"+nome+"a tutti"
+    return sResponsePage
     password = request.args.get("cognome")
 
     if request.args.get("sesso")=="1":
